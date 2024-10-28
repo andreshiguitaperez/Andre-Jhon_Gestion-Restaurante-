@@ -4,7 +4,7 @@ import { GET_USER_BY_ID } from '@/src/utils/gql/queries/users';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
+import { createUser } from '@/src/utils/api';
 import { Button } from '@/src/components/ui/button';
 import {
   Form,
@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from '@/src/components/ui/form';
 import { Input } from '@/src/components/ui/input';
+import { nanoid } from 'nanoid';
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -49,10 +50,19 @@ const Index = ({ id }: { id: string }) => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    const passsword = nanoid();
+    try {
+      const usuario = await createUser({
+        name: values.username,
+        email: values.email,
+        password: passsword,
+      });
+      console.log(usuario);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   useEffect(() => {
