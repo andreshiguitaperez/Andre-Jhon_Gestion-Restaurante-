@@ -21,19 +21,29 @@ const makeJSONPost = (url: string, data: any, options: { headers: {} }) => {
 };
 
 export const getAuth0Token = async () => {
-  const url = `https://appbasemj.us.auth0.com/oauth/token`;
-  const headers = { 'content-type': 'application/json' };
-  const body = {
-    client_id: 'V0eG3Tb8wiDXpD9MQtwwncnrXesiSzaj',
-    client_secret: 'ioPd3tXU00-qnxTCmm4nRrZ9XZhKLLYbT0Gv1YokQBjKUlQTF7yBfWk9kSQf6sCo',
-    audience: 'https://appbasemj.us.auth0.com/api/v2/',
-    grant_type: 'client_credentials',
+  const options = {
+    method: 'POST',
+    headers: {
+      cookie:
+        'did=s%253Av0%253A3928d909-4357-44a4-bea4-f9f89566f63c.hOKSP5XpWyrvSlfBiKHibZytc3ZVNl0gEzDpltl7goQ; did_compat=s%253Av0%253A3928d909-4357-44a4-bea4-f9f89566f63c.hOKSP5XpWyrvSlfBiKHibZytc3ZVNl0gEzDpltl7goQ',
+      'Content-Type': 'application/json',
+    },
+    body: '{"client_id":"a4W0w701SsYcEWYeBGpQl6gsGsJxZdA2","client_secret":"G2Zj9nP_OU9PbxvGDCeGEwYQhUkYlpLQAyDm1KeP73xsvOCCK23Fo6eksqHd5gWV","audience":"https://inventarios20242.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
   };
-  return makeJSONPost(url, body, { headers });
+
+  const res = fetch(
+    'https://inventarios20242.us.auth0.com/oauth/token',
+    options
+  ).then((response) => response.json());
+  return res;
 };
 
-export const createAuth0User = async (data: any, token: any, tokenType: any) => {
-  const url = `https://appbasemj.us.auth0.com/api/v2/users`;
+export const createAuth0User = async (
+  data: any,
+  token: any,
+  tokenType: any
+) => {
+  const url = `https://inventarios20242.us.auth0.com/api/v2/users`;
   const headers = {
     Authorization: `${tokenType} ${token}`,
   };
