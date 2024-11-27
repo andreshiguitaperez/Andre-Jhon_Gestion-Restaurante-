@@ -57,7 +57,7 @@
     "graphql-fields": "^2.0.3",
     "graphql-scalars": "^1.23.0",
     "input-otp": "^1.2.4",
-    "lucide-react": "^0.441.0",
+    "lucide-react": "^0.461.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "nanoid": "^5.0.7",

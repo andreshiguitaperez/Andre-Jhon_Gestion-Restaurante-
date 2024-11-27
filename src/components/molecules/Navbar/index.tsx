@@ -41,7 +41,7 @@ const Index = () => {
           <nav className='grid gap-2 text-lg font-medium'>
             <Link href='/' className='flex items-center gap-2 text-lg font-semibold'>
               <Package2 className='h-6 w-6' />
-              <span className='sr-only'>Virtual Inventarios</span>
+              <span className='sr-only'>Gestión de restaurante</span>
             </Link>
             <Link
               href='/'
@@ -119,17 +119,17 @@ const Index = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem>Opciones</DropdownMenuItem>
+          <DropdownMenuItem>Soporte</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => {
               signOut();
             }}
           >
-            Logout
+            Salir
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

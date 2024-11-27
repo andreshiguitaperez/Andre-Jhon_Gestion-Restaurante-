@@ -19,8 +19,8 @@ export default function Component() {
   return (
     <Card>
       <CardHeader className='px-7'>
-        <CardTitle>Customers</CardTitle>
-        <CardDescription>Recent orders from your store.</CardDescription>
+        <CardTitle>Clientes</CardTitle>
+        <CardDescription>Clientes que han comprado en el restaurante.</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>

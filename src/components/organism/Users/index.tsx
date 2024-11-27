@@ -35,8 +35,8 @@ export default function Component() {
     <Card>
       <CardHeader className='px-7 flex-row flex items-center justify-between'>
         <div>
-          <CardTitle>Users</CardTitle>
-          <CardDescription>Recent orders from your store.</CardDescription>
+          <CardTitle>Usuarios</CardTitle>
+          <CardDescription>Usuarios registrados en la aplicación del restaurante.</CardDescription>
         </div>
         <Button
           onClick={() => router.push('/users/new')}

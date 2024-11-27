@@ -51,8 +51,8 @@ const Index = ({ id }: { id: string }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: userData.name,
-      email: userData.email,
+      username: userData?.name,
+      email: userData?.email,
     },
   });
 
@@ -108,7 +108,7 @@ const Index = ({ id }: { id: string }) => {
                 <Input
                   placeholder='Nombre'
                   {...field}
-                  value={userData.name}
+                  value={userData?.name}
                   onChange={(e) => {
                     setUserData({ ...userData, name: e.target.value });
                   }}
@@ -129,7 +129,7 @@ const Index = ({ id }: { id: string }) => {
                   type='email'
                   placeholder='Nombre'
                   {...field}
-                  value={userData.email}
+                  value={userData?.email}
                   onChange={(e) => {
                     setUserData({ ...userData, email: e.target.value });
                   }}
