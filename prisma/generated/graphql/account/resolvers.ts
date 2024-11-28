@@ -5,7 +5,7 @@ const AccountResolvers = {
     user: async (parent: any, _: any) => {
       return await prisma.user.findUnique({
         where: {
-          id: parent.userId,
+          id: parent.userId, // Este sigue siendo el ID del usuario
         },
       });
     },
@@ -17,7 +17,10 @@ const AccountResolvers = {
     account: async (_: any, args: any) => {
       return await prisma.account.findUnique({
         where: {
-          id: args.id,
+          provider_providerAccountId: {
+            provider: args.provider,  // Aquí usas 'provider' y 'providerAccountId'
+            providerAccountId: args.providerAccountId, // Debes pasar estos dos campos
+          },
         },
       });
     },
@@ -31,7 +34,10 @@ const AccountResolvers = {
     updateAccount: async (_: any, args: any) => {
       return await prisma.account.update({
         where: {
-          id: args.where.id,
+          provider_providerAccountId: {
+            provider: args.where.provider,  // Debes pasar los dos campos de la clave compuesta
+            providerAccountId: args.where.providerAccountId,
+          },
         },
         data: { ...args.data },
       });
@@ -39,7 +45,10 @@ const AccountResolvers = {
     deleteAccount: async (_: any, args: any) => {
       return await prisma.account.delete({
         where: {
-          id: args.where.id,
+          provider_providerAccountId: {
+            provider: args.where.provider,  // Lo mismo aquí, usa los dos campos
+            providerAccountId: args.where.providerAccountId,
+          },
         },
       });
     },

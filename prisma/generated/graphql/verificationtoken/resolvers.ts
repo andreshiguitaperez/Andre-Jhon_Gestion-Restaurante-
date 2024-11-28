@@ -9,7 +9,10 @@ const VerificationTokenResolvers = {
     verificationToken: async (_: any, args: any) => {
       return await prisma.verificationToken.findUnique({
         where: {
-          id: args.id,
+          identifier_token: {  // Aquí usamos el identificador compuesto
+            identifier: args.id,  // Suponiendo que 'id' es el 'identifier' del token
+            token: args.token,     // Si también se pasa el token, úsalo
+          },
         },
       });
     },
@@ -26,7 +29,10 @@ const VerificationTokenResolvers = {
     updateVerificationToken: async (_: any, args: any) => {
       return await prisma.verificationToken.update({
         where: {
-          id: args.where.id,
+          identifier_token: {  // Aquí usamos el identificador compuesto
+            identifier: args.where.identifier,
+            token: args.where.token, // Usa también el token para la actualización
+          },
         },
         data: {
           ...args.data,
@@ -39,7 +45,10 @@ const VerificationTokenResolvers = {
     deleteVerificationToken: async (_: any, args: any) => {
       return await prisma.verificationToken.delete({
         where: {
-          id: args.where.id,
+          identifier_token: {  // Aquí usamos el identificador compuesto
+            identifier: args.where.identifier,
+            token: args.where.token, // Usa también el token para la eliminación
+          },
         },
       });
     },

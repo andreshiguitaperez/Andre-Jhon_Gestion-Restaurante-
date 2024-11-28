@@ -5,7 +5,7 @@ const SessionResolvers = {
     user: async (parent: any, _: any) => {
       return await prisma.user.findUnique({
         where: {
-          id: parent.userId,
+          id: parent.userId, // Este sigue siendo el ID del usuario, no el de la sesión
         },
       });
     },
@@ -17,7 +17,7 @@ const SessionResolvers = {
     session: async (_: any, args: any) => {
       return await prisma.session.findUnique({
         where: {
-          id: args.id,
+          sessionToken: args.sessionToken,  // Cambié de 'id' a 'sessionToken'
         },
       });
     },
@@ -34,7 +34,7 @@ const SessionResolvers = {
     updateSession: async (_: any, args: any) => {
       return await prisma.session.update({
         where: {
-          id: args.where.id,
+          sessionToken: args.where.sessionToken,  // Cambié de 'id' a 'sessionToken'
         },
         data: {
           ...args.data,
@@ -47,7 +47,7 @@ const SessionResolvers = {
     deleteSession: async (_: any, args: any) => {
       return await prisma.session.delete({
         where: {
-          id: args.where.id,
+          sessionToken: args.where.sessionToken,  // Cambié de 'id' a 'sessionToken'
         },
       });
     },
