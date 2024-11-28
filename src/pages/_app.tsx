@@ -12,9 +12,9 @@ export default function App({
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={session}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
       </SessionProvider>
     </ApolloProvider>
   );

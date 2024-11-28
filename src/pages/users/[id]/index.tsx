@@ -103,7 +103,7 @@ const Index = ({ id }: { id: string }) => {
           name='username'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Nombre de usuario</FormLabel>
               <FormControl>
                 <Input
                   placeholder='Nombre'
@@ -123,11 +123,11 @@ const Index = ({ id }: { id: string }) => {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Correo</FormLabel>
               <FormControl>
                 <Input
-                  type='email'
-                  placeholder='Nombre'
+                  type='correo'
+                  placeholder='Correo'
                   {...field}
                   value={userData?.email}
                   onChange={(e) => {
@@ -139,7 +139,7 @@ const Index = ({ id }: { id: string }) => {
             </FormItem>
           )}
         />
-        <Button type='submit'>Submit</Button>
+        <Button type='submit'>Crear</Button>
       </form>
     </Form>
   );

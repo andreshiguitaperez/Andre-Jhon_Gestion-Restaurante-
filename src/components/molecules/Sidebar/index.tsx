@@ -14,7 +14,6 @@ import {
   CreditCard,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/src/components/ui/avatar';
-import { Badge } from '@/src/components/ui/badge';
 import { Button } from '@/src/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/src/components/ui/card';
 import { useSession } from 'next-auth/react';
@@ -26,6 +25,17 @@ const Sidebar = () => {
   // Estados para manejar submenús
   const [showMasters, setShowMasters] = useState(false);
   const [showTransactions, setShowTransactions] = useState(false);
+
+  // Función para alternar submenús, asegurando que no se muestren juntos
+  const toggleMasters = () => {
+    setShowMasters(!showMasters);
+    if (showTransactions) setShowTransactions(false); // Cierra el submenú de transacciones
+  };
+
+  const toggleTransactions = () => {
+    setShowTransactions(!showTransactions);
+    if (showMasters) setShowMasters(false); // Cierra el submenú de maestros
+  };
 
   return (
     <div className='hidden border-r bg-muted/40 md:block'>
@@ -56,7 +66,7 @@ const Sidebar = () => {
             {/* Transacciones */}
             <div className='relative'>
               <button
-                onClick={() => setShowTransactions(!showTransactions)}
+                onClick={toggleTransactions}
                 className='flex w-full items-center justify-between rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary'
               >
                 <div className='flex items-center gap-3'>
@@ -83,7 +93,7 @@ const Sidebar = () => {
             {/* Maestros */}
             <div className='relative'>
               <button
-                onClick={() => setShowMasters(!showMasters)}
+                onClick={toggleMasters}
                 className='flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary'
               >
                 <div className='flex items-center gap-3'>
@@ -102,13 +112,6 @@ const Sidebar = () => {
                   >
                     <Package className='h-4 w-4' />
                     Productos
-                  </Link>
-                  <Link
-                    href='/customers'
-                    className='flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:bg-muted'
-                  >
-                    <Users className='h-4 w-4' />
-                    Clientes
                   </Link>
                 </div>
               )}

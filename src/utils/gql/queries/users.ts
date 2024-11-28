@@ -10,6 +10,7 @@ const GET_USERS = gql`
       email
       deleted
       eneabled
+      createdAt
     }
   }
 `;
@@ -27,4 +28,15 @@ const GET_USER_BY_ID = gql`
   }
 `;
 
-export { GET_USERS, GET_USER_BY_ID };
+const UPDATE_USER_ROLE = gql`
+  mutation UpdateUserRole($userId: ID!, $role: String!) {
+    updateUserRole(id: $userId, role: $role) {
+      id
+      name
+      email
+      role
+    }
+  }
+`;
+
+export { GET_USERS, GET_USER_BY_ID, UPDATE_USER_ROLE };

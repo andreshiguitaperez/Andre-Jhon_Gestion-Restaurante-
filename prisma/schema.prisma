@@ -52,6 +52,7 @@ model User {
   updatedAt     DateTime      @updatedAt
   profile       Profile?
   products      Products[]    @relation("UserProducts")
+  orders        Order[]       @relation("UserOrders")
 }
 
 model Profile {
@@ -64,55 +65,30 @@ model Profile {
   userId    String  @unique
 }
 
-model Customer {
-  id        String   @id @default(cuid())
-  document  String
-  name      String
-  email     String
-  phone     String
-  address   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  orders    Order[]
-}
-
 model Order {
-  id         String      @id @default(cuid())
-  customer   Customer    @relation(fields: [customerId], references: [id])
-  customerId String
-  total      Float
-  status     String
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  items      OrderItem[]
+  id            String    @id @default(cuid())
+  total         Int
+  status        String
+  createdAt     DateTime  @default(now())
+  createdBy     String
+  user          User      @relation("UserOrders", fields: [createdBy], references: [id])
+  productChange String?   
+  product       Products? @relation("ProductsOrders", fields: [productChange], references: [id])
 }
 
-model OrderItem {
-  id         String   @id @default(cuid())
-  order      Order    @relation(fields: [orderId], references: [id])
-  orderId    String
-  product    Products @relation(fields: [productId], references: [id])
-  productId  String
-  quantity   Int
-  price      Float
-  totalprice Float
-  discount   Float
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
 
 model Products {
-  id          String      @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String
   price       Float
   image       String
   stock       Int
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  orderItems  OrderItem[]  
-  createdBy   String      @default("default-user-id") // Asigna un valor predeterminado temporal
-  user        User        @relation("UserProducts", fields: [createdBy], references: [id]) 
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdBy   String    @default("default-user-id")
+  user        User      @relation("UserProducts", fields: [createdBy], references: [id])
+  orders      Order[]   @relation("ProductsOrders")
 }
 
 
