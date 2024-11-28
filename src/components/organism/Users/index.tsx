@@ -71,7 +71,7 @@ export default function Component() {
     null
   );
 
-  const { data, loading: loadingUsers } = useQuery(GET_USERS_CLIENT, {
+  const {loading: loadingUsers} = useQuery(GET_USERS_CLIENT, {
     fetchPolicy: 'cache-and-network',
     onCompleted(data) {
       setUsers(data.users);

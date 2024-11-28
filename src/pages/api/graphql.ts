@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import 'ts-tiny-invariant';
 import { ApolloServer } from 'apollo-server-micro';
-import { buildSchema } from 'type-graphql';
 import { customTypes } from '@/graphql/custom/types';
 import { resolvers } from '@/prisma/generated/graphql/resolvers';
 import { types } from '@/prisma/generated/graphql/types';

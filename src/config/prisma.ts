@@ -1,11 +1,14 @@
 import { PrismaClient } from '@prisma/client';
 
+// Extiende el tipo global de NodeJS para permitir propiedades adicionales en globalThis
 declare global {
-  var prismaGlobal: PrismaClient;
+  // Expande globalThis para permitir propiedades dinámicas
+  var prismaGlobal: PrismaClient | undefined;
 }
 
 let prisma: PrismaClient;
-// check to use this workaround only in development and not in production
+
+// Verifica el entorno y usa el prismaGlobal si está disponible
 if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient();
 } else {
@@ -14,4 +17,5 @@ if (process.env.NODE_ENV === 'production') {
   }
   prisma = global.prismaGlobal;
 }
+
 export default prisma;

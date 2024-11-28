@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { useSession } from "next-auth/react";
 import {
   Card,
   CardContent,
@@ -52,7 +51,6 @@ const GET_PRODUCTS = gql`
 `;
 
 const Charts = () => {
-  const { data: session } = useSession();
   const { data: productsData, loading: loadingProducts } = useQuery(GET_PRODUCTS);
   const { data: ordersData, loading: loadingOrders } = useQuery(GET_ORDERS);
 
