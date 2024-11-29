@@ -1,21 +1,23 @@
 import { useRef, useState } from 'react';
 
-const useFormData = initial => {
-  const form = useRef(initial);
+// Tipar 'initial' con un tipo más flexible
+const useFormData = <T>(initial: T) => {
+  const form = useRef<HTMLFormElement | null>(null);
 
-  const [formData, setFormData] = useState({} as any);
+  // Cambiar el tipo de 'formData' para aceptar Record<string, any>
+  const [formData, setFormData] = useState<Record<string, any>>(initial as any);
 
-  const getFormData: any = () => {
+  const getFormData = (): Record<string, any> => {
+    if (!form.current) return {}; // Si no hay formulario, retornamos un objeto vacío
+
     const fd = new FormData(form.current);
+    const obj: Record<string, any> = {};  // Este objeto es del tipo Record<string, any>
 
-    const obj = {};
     fd.forEach((value, key) => {
       const str = key.split(':');
-
       if (str.length > 1) {
         obj[str[0]] = {
           ...obj[str[0]],
-
           [str[1]]: value,
         };
       } else {
@@ -27,7 +29,7 @@ const useFormData = initial => {
   };
 
   const updateFormData = () => {
-    setFormData(getFormData());
+    setFormData(getFormData()); // Ahora acepta Record<string, any>
   };
 
   return { form, formData, updateFormData } as const;
