@@ -26,6 +26,9 @@ const GET_PRODUCTS = gql`
       stock
       image
       createdBy
+      user {
+        name
+      }
     }
   }
 `;
@@ -149,7 +152,7 @@ const ProductsPage = () => {
                       "No disponible"
                     )}
                   </TableCell>
-                  <TableCell>{product.createdBy}</TableCell>
+                  <TableCell>{product.user?.name || 'Desconocido'}</TableCell>
                 </TableRow>
               );
             })}
