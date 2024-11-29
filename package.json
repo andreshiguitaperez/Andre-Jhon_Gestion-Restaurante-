@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "cosmo": "cosmo && prettier --config .prettierrc prisma/generated/graphql/**/*.ts --write"
+    "cosmo": "cosmo && prettier --config .prettierrc prisma/generated/graphql/**/*.ts --write",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
