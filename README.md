@@ -51,3 +51,4 @@ yarn dev
 * Gestión de transacciones con visualización de movimientos y gráficas
 * Gestión de maestros con opción para agregar nuevos
 * Gestión de usuarios con roles diferenciados (ADMIN, USER)
+* Se despliega en vercel
