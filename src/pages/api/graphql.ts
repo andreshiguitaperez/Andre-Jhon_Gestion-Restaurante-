@@ -31,10 +31,12 @@ const functionHandler = async (req: IncomingMessage, res: ServerResponse<Incomin
     resolvers: [...resolvers, ...customResolvers],
     persistedQueries: false, // This disables persisted queries
     cache: 'bounded', // This sets up a bounded cache
-    introspection: process.env.NODE_ENV !== 'production',
+    introspection: process.env.NODE_ENV !== 'production', // Habilita introspección en local, pero la desactiva en producción
   });
+  
   const startServer = apolloServer.start();
   await startServer;
+
   return apolloServer.createHandler({
     path: '/api/graphql',
   })(req, res);
@@ -45,6 +47,5 @@ export default cors((req, res) => {
     res.end();
     return false;
   }
-
   return functionHandler(req, res);
 });

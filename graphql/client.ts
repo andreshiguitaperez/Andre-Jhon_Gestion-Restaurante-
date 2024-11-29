@@ -6,6 +6,11 @@ declare global {
 
 let client: ApolloClient<object>;
 
+const graphqlUri =
+  process.env.NODE_ENV === 'production'
+    ? 'https://andre-jhon-gestion-restaurante.vercel.app/api/graphql' // Producción
+    : 'http://localhost:3000/api/graphql'; // Local
+
 if (process.env.NODE_ENV === 'production') {
   client = new ApolloClient({
     cache: new InMemoryCache({
@@ -13,11 +18,10 @@ if (process.env.NODE_ENV === 'production') {
     }),
     link: from([
       new HttpLink({
-        // eslint-disable-next-line no-nested-ternary
-        uri: `${process.env.NEXTAUTH_URL}/api/graphql`,
+        uri: graphqlUri,
       }),
     ]),
-    connectToDevTools: true,
+    connectToDevTools: false,
   });
 } else {
   if (!global.apolloGlobal) {
@@ -25,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
       cache: new InMemoryCache(),
       link: from([
         new HttpLink({
-          uri: `${process.env.NEXTAUTH_URL}/api/graphql`,
+          uri: graphqlUri,
         }),
       ]),
       connectToDevTools: true,
@@ -33,4 +37,5 @@ if (process.env.NODE_ENV === 'production') {
   }
   client = global.apolloGlobal;
 }
+
 export { client };
