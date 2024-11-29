@@ -10,7 +10,7 @@
 2. Interiorizar el funcionamiento de la autenticación tanto en el front como en el back
 3. Entender el funcionamiento de una app de administración usando funciones básicas de CRUD.
 
-### Link de despliegue en Vercel:
+### Link de despliegue en Vercel: https://andre-jhon-gestion-restaurante.vercel.app/
 
 ## CREDENCIALES DE ACCESO
 ### Usuario Admin
