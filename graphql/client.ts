@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
     link: from([
       new HttpLink({
         // eslint-disable-next-line no-nested-ternary
-        uri: 'http://localhost:3000/api/graphql',
+        uri: `${process.env.NEXTAUTH_URL}/api/graphql`,
       }),
     ]),
     connectToDevTools: true,
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
       cache: new InMemoryCache(),
       link: from([
         new HttpLink({
-          uri: 'http://localhost:3000/api/graphql',
+          uri: `${process.env.NEXTAUTH_URL}/api/graphql`,
         }),
       ]),
       connectToDevTools: true,
