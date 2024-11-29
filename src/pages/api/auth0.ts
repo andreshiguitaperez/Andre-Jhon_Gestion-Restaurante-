@@ -1,4 +1,4 @@
-import { createAuth0User, getAuth0Token } from '@/src/utils/api';
+import { createAuth0User, getAuth0Token } from '../../utils/api';
 
 const Auth0 = async (req: any, res: any) => {
   if (req.method === 'POST') {
