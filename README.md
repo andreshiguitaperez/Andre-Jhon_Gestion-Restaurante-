@@ -18,7 +18,7 @@
 - Pass: PruebaIngWeb10*
 
 ### Usuario Normal
-- User: andres.higuita.perez@yopmail.com
+- User: andres.higuita@yopmail.com
 - Pass: PruebaIngWeb10*
 
 
